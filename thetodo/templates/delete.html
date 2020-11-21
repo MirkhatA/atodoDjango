@@ -1,0 +1,7 @@
+{% if user.is_authenticated %}
+<p>Are you sure? "{{item}}"? </p> 
+
+<a href="{% url 'list' %}">Cancel</a>
+{% else %}
+      
+{% endif %}

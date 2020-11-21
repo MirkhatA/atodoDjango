@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="shadow-lg p-3 mb-5 rounded-lg" style="padding: 30px;padding-top: 50px;width: 300px;">
+    <div class="container">
+        <a href="{% url 'home' %}">back</a>
+    
+        <h1>Add tasks</h1>
+    
+        <table>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <p>name of task</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for item in form %}
+                    {{ item }}
+                    {% endfor %}
+                    <!-- {{ form.as_table }} -->
+    
+            </div>
+        </table>
+        <button class="btn btn-primary">Add</button>
+    
+        <script>
+            var name = "{{ user.id }}";
+            document.getElementById("user").value = name;
+        </script>
+    </div>
+</div>
+
+{% else %}
+log in please
+{% endif %}
+
+{% endblock %}
+

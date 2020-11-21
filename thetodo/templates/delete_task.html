@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'home' %}" class="btn btn-secondary alert alert-success">back</a>
+    <h1>Delete task</h1>
+
+    <table>
+        <form method="POST">
+            {% csrf_token %}
+    </table>
+    <button class="btn btn-secondary">Delete</button>
+</div>
+
+
+
+{% endblock %}

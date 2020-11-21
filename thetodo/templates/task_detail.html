@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr><hr><hr>
+<div class="container">
+    <a href="{% url 'home' %}" class="btn btn-secondary alert alert-success">back</a>
+    <h1>{{ task.title }}</h1>
+
+    <p>{{ task.body }}</p>
+</div>
+
+
+
+{% endblock %}

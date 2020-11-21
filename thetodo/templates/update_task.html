@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="shadow-lg p-3 mb-5 rounded-lg" style="padding: 30px;width: 450px;">
+    <div style="padding-left: 5%;margin-top: 15%;margin-bottom: 15%;">
+        <div class="container">
+            <!-- <a href="{% url 'home' %}" class="btn btn-secondary alert alert-success">back</a> -->
+            <h1>Edit task</h1>
+
+            <table>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+            </table>
+            <button class="btn btn-primary">Edit</button>
+        </div>
+    </div>
+</div>
+
+<script>    
+    var name = "{{ user.id }}";
+    document.getElementById("user").value = name;
+
+    var cat_name = ""
+    document.getElementById("categ_name").value = cat_name;
+
+    var input = document.querySelectorAll('.js-date')[0];
+
+    var dateInputMask = function dateInputMask(elm) {
+    elm.addEventListener('keypress', function(e) {
+        if(e.keyCode < 47 || e.keyCode > 57) {
+        e.preventDefault();
+        }
+        
+        var len = elm.value.length;
+        
+        // If we're at a particular place, let the user type the slash
+        // i.e., 12/12/1212
+        if(len !== 1 || len !== 3) {
+        if(e.keyCode == 47) {
+            e.preventDefault();
+        }
+        }
+        
+        // If they don't add the slash, do it for them...
+        if(len === 2) {
+        elm.value += '/';
+        }
+
+        // If they don't add the slash, do it for them...
+        if(len === 5) {
+        elm.value += '/';
+        }
+    });
+    };
+    
+    dateInputMask(input);
+</script> 
+{% else %}
+log in please
+{% endif %}
+
+
+{% endblock %}
